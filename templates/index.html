@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VibeShift AI — Instant Persona and Communication Transformer</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            cyanAccent: {
+              400: '#22d3ee',
+              500: '#06b6d4',
+              600: '#0891b2',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/static/css/custom.css">
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900">
+
+  <!-- ============================================================ -->
+  <!-- NAVBAR -->
+  <!-- ============================================================ -->
+  <header class="sticky top-0 z-40 w-full bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-cyan-500 flex items-center justify-center text-white font-black text-xl shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform">
+          VS
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="text-xl font-extrabold tracking-tight text-slate-900">VibeShift <span class="gradient-text">AI</span></span>
+            <span class="hidden sm:inline-block px-2 py-0.5 text-[11px] font-bold rounded-md bg-blue-50 text-blue-700 border border-blue-200">v2.6</span>
+          </div>
+          <p class="text-[11px] text-slate-500 hidden md:block">Instant Persona & Communication Transformer</p>
+        </div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+        <a href="#workspace" class="hover:text-blue-600 transition">Workspace</a>
+        <a href="#features" class="hover:text-blue-600 transition">Features</a>
+        <a href="#how-it-works" class="hover:text-blue-600 transition">How It Works</a>
+        <a href="#history-section" class="hover:text-blue-600 transition">History</a>
+      </nav>
+
+      <!-- Status Pill & API Setup Trigger -->
+      <div class="flex items-center gap-3">
+        <div id="systemStatusPill" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-sm cursor-pointer hover:bg-emerald-100 transition" onclick="document.getElementById('apiModal').classList.remove('hidden')">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span id="apiStatusText">Engine Ready</span>
+        </div>
+
+        <a href="#workspace" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-bold rounded-xl text-white gradient-btn shadow-sm">
+          Launch App
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================ -->
+  <!-- HERO SECTION -->
+  <!-- ============================================================ -->
+  <section class="relative pt-12 pb-16 md:pt-16 md:pb-20 overflow-hidden bg-gradient-to-b from-white via-slate-50 to-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      
+      <!-- College Vibeathon Badge -->
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold mb-6 shadow-sm">
+        <span class="flex h-2 w-2 rounded-full bg-blue-600"></span>
+        College Vibeathon 2026 Project Showcase
+      </div>
+
+      <!-- Hero Headline -->
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 max-w-4xl mx-auto leading-tight sm:leading-none">
+        One rough draft, <span class="gradient-text">many voices.</span>
+      </h1>
+      
+      <!-- Tagline -->
+      <p class="mt-4 text-lg sm:text-xl font-medium text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        Rewrite any message for the audience that will read it. Transform blunt rants, messy bullets, or rough drafts into Executive briefs, empathetic peer feedback, formal compliance notices, or high-energy team hype.
+      </p>
+
+      <!-- Value Props Highlights -->
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3 text-xs font-semibold text-slate-600">
+        <span class="px-3 py-1.5 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-1.5">
+          <span class="text-emerald-500">✓</span> Word-Level LCS Diff
+        </span>
+        <span class="px-3 py-1.5 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-1.5">
+          <span class="text-blue-500">✓</span> Meaning Guard Fact Shield
+        </span>
+        <span class="px-3 py-1.5 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-1.5">
+          <span class="text-purple-500">✓</span> 4 Distinct Personas
+        </span>
+        <span class="px-3 py-1.5 bg-white rounded-lg border border-slate-200 shadow-sm flex items-center gap-1.5">
+          <span class="text-cyan-500">✓</span> Zero Data Hallucination
+        </span>
+      </div>
+
+      <!-- Hero CTAs -->
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="#workspace" class="w-full sm:w-auto px-8 py-3.5 text-sm font-bold text-white gradient-btn rounded-xl shadow-lg shadow-blue-500/20">
+          Transform Your Message
+        </a>
+        <button onclick="document.querySelector('.sample-btn').click(); document.getElementById('workspace').scrollIntoView({behavior:'smooth'})" class="w-full sm:w-auto px-6 py-3.5 text-sm font-bold text-slate-700 bg-white hover:bg-slate-100 rounded-xl border border-slate-200 shadow-sm transition">
+          Try Live Sample Scenario
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- MAIN WORKSPACE SECTION -->
+  <!-- ============================================================ -->
+  <main id="workspace" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+
+      <!-- ========================================== -->
+      <!-- LEFT COLUMN: INPUT, PERSONAS & TONE CONTROLS -->
+      <!-- ========================================== -->
+      <section class="lg:col-span-6 space-y-6">
+
+        <!-- Input Draft Card -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm">
+          
+          <div class="flex items-center justify-between mb-3">
+            <h2 class="text-base font-bold text-slate-900 flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+              Input Message Draft
+            </h2>
+            <div class="flex items-center gap-2">
+              <button id="clearDraftBtn" class="text-xs text-slate-400 hover:text-slate-600 font-semibold transition px-2 py-1 rounded hover:bg-slate-100">
+                Clear
+              </button>
+            </div>
+          </div>
+
+          <!-- Sample Buttons -->
+          <div class="mb-3 flex flex-wrap items-center gap-2">
+            <span class="text-xs font-semibold text-slate-400">Quick Samples:</span>
+            <button class="sample-btn px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 transition border border-slate-200" data-sample="slack">
+              🚨 Blunt Slack Vent
+            </button>
+            <button class="sample-btn px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 transition border border-slate-200" data-sample="notes">
+              📝 Messy Meeting Bullets
+            </button>
+            <button class="sample-btn px-2.5 py-1 text-xs font-medium rounded-lg bg-slate-100 hover:bg-blue-50 hover:text-blue-700 text-slate-700 transition border border-slate-200" data-sample="feedback">
+              🎯 Harsh Feedback Draft
+            </button>
+          </div>
+
+          <!-- Textarea Input Area -->
+          <div class="relative">
+            <textarea
+              id="draftInput"
+              rows="6"
+              class="w-full p-4 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-800 placeholder-slate-400 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition leading-relaxed resize-y"
+              placeholder="Paste your raw, blunt, or messy text here... e.g., 'Hey, your code broke staging again. Fix this ASAP, I can't test anything and the release is tomorrow. Stop rushing PRs.'"
+            ></textarea>
+          </div>
+
+          <!-- Counters & Shortcut hint -->
+          <div class="mt-3 flex items-center justify-between text-xs text-slate-400">
+            <span class="font-medium"><span id="wordCount" class="font-bold text-slate-700">0</span> words • <span id="charCount" class="font-bold text-slate-700">0</span> chars</span>
+            <span class="hidden sm:inline font-mono text-[11px] bg-slate-100 px-2 py-0.5 rounded text-slate-500">Ctrl + Enter to Run</span>
+          </div>
+
+        </div>
+
+        <!-- 4 Communication Personas Card -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm">
+          
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h2 class="text-base font-bold text-slate-900">Communication Persona</h2>
+              <p class="text-xs text-slate-500">Choose the voice and strategic framing for your audience.</p>
+            </div>
+            <span class="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">4 Personas</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            
+            <!-- Persona A: Executive C-Level -->
+            <div class="persona-card cursor-pointer p-4 rounded-xl border-2 border-blue-600 ring-2 ring-blue-500/20 bg-blue-50/40 hover:shadow-sm transition" data-persona="executive">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-xl">👔</span>
+                <span class="text-sm font-bold text-slate-900">Executive C-Level</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-snug">Concise, strategic, outcome-oriented. Bottom line upfront with clear business impact.</p>
+            </div>
+
+            <!-- Persona B: Supportive Peer Feedback -->
+            <div class="persona-card cursor-pointer p-4 rounded-xl border-2 border-slate-200 hover:border-slate-300 hover:shadow-sm transition" data-persona="supportive">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-xl">🤝</span>
+                <span class="text-sm font-bold text-slate-900">Supportive Peer</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-snug">Empathetic, collaborative, constructive. Builds psychological safety and partnership.</p>
+            </div>
+
+            <!-- Persona C: Legal / Compliance Notice -->
+            <div class="persona-card cursor-pointer p-4 rounded-xl border-2 border-slate-200 hover:border-slate-300 hover:shadow-sm transition" data-persona="legal">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-xl">⚖️</span>
+                <span class="text-sm font-bold text-slate-900">Legal / Compliance</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-snug">Precise, neutral, objective, and cautious. Documents timelines without claims of legal advice.</p>
+            </div>
+
+            <!-- Persona D: Gen-Z Hype -->
+            <div class="persona-card cursor-pointer p-4 rounded-xl border-2 border-slate-200 hover:border-slate-300 hover:shadow-sm transition" data-persona="gen_z">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-xl">⚡</span>
+                <span class="text-sm font-bold text-slate-900">Gen-Z Hype</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-snug">High energy, informal, modern team camaraderie. Tasteful modern colloquialisms.</p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Custom Tone Sliders & Length Card -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200/90 shadow-sm space-y-5">
+          
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h2 class="text-base font-bold text-slate-900">Custom Tone Calibration</h2>
+              <p class="text-xs text-slate-500">Fine-tune tone parameters sent directly to the AI engine.</p>
+            </div>
+            <button onclick="setSliderValues(50,50,50,50)" class="text-xs text-blue-600 hover:underline font-semibold">
+              Reset 50%
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            
+            <!-- Slider 1: Formality -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between text-xs font-semibold">
+                <span class="text-slate-700">Formality</span>
+                <span id="badgeFormality" class="text-blue-600 font-mono">50%</span>
+              </div>
+              <input id="sliderFormality" type="range" min="0" max="100" value="50">
+              <div class="flex justify-between text-[10px] text-slate-400">
+                <span>Casual</span>
+                <span>Boardroom</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: Brevity -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between text-xs font-semibold">
+                <span class="text-slate-700">Brevity</span>
+                <span id="badgeBrevity" class="text-blue-600 font-mono">50%</span>
+              </div>
+              <input id="sliderBrevity" type="range" min="0" max="100" value="50">
+              <div class="flex justify-between text-[10px] text-slate-400">
+                <span>Detailed</span>
+                <span>Punchy</span>
+              </div>
+            </div>
+
+            <!-- Slider 3: Urgency -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between text-xs font-semibold">
+                <span class="text-slate-700">Urgency</span>
+                <span id="badgeUrgency" class="text-blue-600 font-mono">50%</span>
+              </div>
+              <input id="sliderUrgency" type="range" min="0" max="100" value="50">
+              <div class="flex justify-between text-[10px] text-slate-400">
+                <span>Relaxed</span>
+                <span>High Priority</span>
+              </div>
+            </div>
+
+            <!-- Slider 4: Empathy -->
+            <div class="space-y-1.5">
+              <div class="flex justify-between text-xs font-semibold">
+                <span class="text-slate-700">Empathy</span>
+                <span id="badgeEmpathy" class="text-blue-600 font-mono">50%</span>
+              </div>
+              <input id="sliderEmpathy" type="range" min="0" max="100" value="50">
+              <div class="flex justify-between text-[10px] text-slate-400">
+                <span>Analytical</span>
+                <span>High Warmth</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Length Presets -->
+          <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-700">Length Constraint:</span>
+            <div class="inline-flex rounded-xl p-1 bg-slate-100 border border-slate-200">
+              <button class="length-btn px-3 py-1 text-xs font-bold rounded-lg transition bg-slate-100 text-slate-700" data-length="short">Short</button>
+              <button class="length-btn active px-3 py-1 text-xs font-bold rounded-lg transition bg-blue-600 text-white shadow-sm" data-length="balanced">Balanced</button>
+              <button class="length-btn px-3 py-1 text-xs font-bold rounded-lg transition bg-slate-100 text-slate-700" data-length="detailed">Detailed</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Main Action Buttons -->
+        <div class="flex flex-col sm:flex-row items-center gap-3">
+          <button id="transformBtn" class="w-full sm:flex-1 py-4 px-6 rounded-xl font-bold text-white gradient-btn shadow-md shadow-blue-500/25 flex items-center justify-center gap-2 transition text-sm">
+            <svg id="btnSpinner" class="hidden animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+              <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+              <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <span id="btnText">Transform Persona</span>
+          </button>
+
+          <button id="compareAllBtn" class="w-full sm:w-auto py-4 px-5 rounded-xl font-bold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 shadow-sm flex items-center justify-center gap-2 transition text-sm">
+            <span>👥</span> Compare All 4 Voices
+          </button>
+        </div>
+
+      </section>
+
+      <!-- ========================================== -->
+      <!-- RIGHT COLUMN: RESULTS, DIFF & MEANING GUARD -->
+      <!-- ========================================== -->
+      <section class="lg:col-span-6 space-y-6">
+
+        <!-- EMPTY STATE CARD (Default before generation) -->
+        <div id="emptyStateCard" class="bg-white rounded-2xl p-10 border border-slate-200/90 shadow-sm text-center flex flex-col items-center justify-center min-h-[460px]">
+          <div class="w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-3xl mb-4 shadow-inner">
+            ✨
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Workspace Ready</h3>
+          <p class="text-sm text-slate-500 max-w-md mx-auto mb-6 leading-relaxed">
+            Enter your message or click one of the quick samples on the left. Then choose your desired persona and tone sliders to view side-by-side differences and Meaning Guard verification.
+          </p>
+          <div class="flex items-center gap-4 text-xs text-slate-400 font-medium">
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-blue-500"></span> 1. Draft</span>
+            <span>→</span>
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-cyan-500"></span> 2. Calibrate</span>
+            <span>→</span>
+            <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> 3. Inspect</span>
+          </div>
+        </div>
+
+        <!-- 4-WAY COMPARISON GRID (Activated when "Compare All 4" is clicked) -->
+        <div id="multiCompareGrid" class="hidden space-y-4">
+          <!-- Dynamically populated by app.js -->
+        </div>
+
+        <!-- SINGLE RESULT CARD -->
+        <div id="singleResultCard" class="hidden space-y-6">
+          
+          <!-- Result Output Box -->
+          <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+            
+            <!-- Result Header -->
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div class="flex items-center gap-2">
+                <span id="resultPersonaBadge" class="text-xs px-2.5 py-1 rounded-md font-bold bg-blue-100 text-blue-800">
+                  Executive Summary
+                </span>
+                <span id="resultEngineBadge" class="text-xs px-2.5 py-0.5 rounded-full font-medium bg-amber-100 text-amber-800">
+                  Demo Mode
+                </span>
+              </div>
+              
+              <!-- Quick Action Toolbar -->
+              <div class="flex items-center gap-1 text-slate-500">
+                <button id="editInlineBtn" class="p-1.5 rounded-lg hover:bg-slate-100 hover:text-slate-800 transition" title="Edit inline">
+                  ✏️
+                </button>
+                <button id="regenerateBtn" class="p-1.5 rounded-lg hover:bg-slate-100 hover:text-slate-800 transition" title="Regenerate">
+                  🔄
+                </button>
+                <button id="clearResultBtn" class="p-1.5 rounded-lg hover:bg-slate-100 hover:text-slate-800 transition" title="Start over">
+                  🧹
+                </button>
+              </div>
+            </div>
+
+            <!-- Transformation Summary Banner -->
+            <div class="p-3 rounded-xl bg-blue-50/70 border border-blue-100 text-xs text-blue-900 leading-snug flex items-start gap-2">
+              <span class="text-blue-600 font-bold">Transformation:</span>
+              <span id="resultChangeSummary">Reframed raw input into high-level strategic business impact.</span>
+            </div>
+
+            <!-- Rewritten Text View -->
+            <div id="resultTextContent" class="text-slate-800 text-sm leading-relaxed whitespace-pre-wrap p-4 bg-slate-50/60 rounded-xl border border-slate-100 select-all font-normal">
+              <!-- Rewritten message appears here -->
+            </div>
+
+            <!-- Inline Text Editor (Hidden by default) -->
+            <div id="resultTextEditor" class="hidden space-y-3">
+              <textarea id="resultTextarea" rows="5" class="w-full p-4 rounded-xl border border-blue-300 text-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 leading-relaxed"></textarea>
+              <div class="flex justify-end gap-2">
+                <button id="cancelInlineEditBtn" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 transition">Cancel</button>
+                <button id="saveInlineEditBtn" class="px-3 py-1.5 rounded-lg text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 transition">Save & Re-diff</button>
+              </div>
+            </div>
+
+            <!-- Action Buttons Grid -->
+            <div class="pt-2 flex flex-wrap items-center gap-2">
+              <button id="copyBtn" class="px-3 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-sm flex items-center gap-1.5 transition">
+                <span>📋</span> Copy Message
+              </button>
+              <button id="copyEmailBtn" class="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1.5">
+                <span>✉️</span> Email Format
+              </button>
+              <button id="copySlackBtn" class="px-3 py-2 rounded-xl text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition flex items-center gap-1.5">
+                <span>💬</span> Slack / Teams Format
+              </button>
+              
+              <div class="ml-auto flex items-center gap-1">
+                <button id="exportTxtBtn" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 border border-slate-200 transition" title="Export as plain text">
+                  .txt
+                </button>
+                <button id="exportMdBtn" class="px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:bg-slate-100 border border-slate-200 transition" title="Export as markdown">
+                  .md
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- WORD-LEVEL DIFF INSPECTOR CARD -->
+          <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-100">
+              <div>
+                <h3 class="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                  <span>🔍</span> Word-Level Difference Inspector
+                </h3>
+                <p class="text-xs text-slate-500">Real token LCS diff highlighting additions, removals, and changes.</p>
+              </div>
+
+              <!-- View Switcher Toggle -->
+              <div class="inline-flex rounded-lg p-1 bg-slate-100 border border-slate-200 text-xs">
+                <button id="btnSideBySide" class="px-2.5 py-1 rounded-md font-semibold bg-white shadow-sm text-blue-600 transition">
+                  Side-by-Side
+                </button>
+                <button id="btnUnified" class="px-2.5 py-1 rounded-md text-slate-600 hover:text-slate-900 transition">
+                  Unified Inline
+                </button>
+              </div>
+            </div>
+
+            <!-- Diff Metrics Ribbon -->
+            <div class="grid grid-cols-4 gap-2 p-3 bg-slate-50 rounded-xl border border-slate-200 text-center text-xs">
+              <div>
+                <span class="text-slate-400 block text-[10px] uppercase font-bold">Original</span>
+                <span id="origWordStat" class="font-bold text-slate-800 font-mono">0</span> <span class="text-[10px] text-slate-500">words</span>
+              </div>
+              <div>
+                <span class="text-slate-400 block text-[10px] uppercase font-bold">Rewritten</span>
+                <span id="rewWordStat" class="font-bold text-slate-800 font-mono">0</span> <span class="text-[10px] text-slate-500">words</span>
+              </div>
+              <div>
+                <span class="text-slate-400 block text-[10px] uppercase font-bold">Delta</span>
+                <span id="deltaWordStat" class="font-bold text-blue-600 font-mono">0</span>
+              </div>
+              <div>
+                <span class="text-slate-400 block text-[10px] uppercase font-bold">Similarity</span>
+                <span id="similarityStat" class="font-bold text-slate-800 font-mono">0%</span>
+              </div>
+            </div>
+
+            <!-- SIDE-BY-SIDE CONTAINER -->
+            <div id="sideBySideContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs leading-relaxed">
+              <div class="p-3.5 rounded-xl border border-rose-200 bg-rose-50/20">
+                <div class="text-[11px] font-bold text-rose-800 mb-1.5 flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-rose-500"></span> Original (Removals Highlighted)
+                </div>
+                <div id="diffColOriginal" class="text-slate-700 whitespace-pre-wrap"></div>
+              </div>
+
+              <div class="p-3.5 rounded-xl border border-emerald-200 bg-emerald-50/20">
+                <div class="text-[11px] font-bold text-emerald-800 mb-1.5 flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Rewritten (Additions Highlighted)
+                </div>
+                <div id="diffColRewritten" class="text-slate-700 whitespace-pre-wrap"></div>
+              </div>
+            </div>
+
+            <!-- UNIFIED CONTAINER -->
+            <div id="unifiedContainer" class="hidden p-4 rounded-xl border border-slate-200 bg-slate-50 text-xs leading-relaxed">
+              <div class="text-[11px] font-bold text-slate-700 mb-2">Unified Token Stream:</div>
+              <div id="unifiedDiffOutput" class="text-slate-800 whitespace-pre-wrap"></div>
+            </div>
+
+            <p class="text-[11px] text-slate-400 italic">
+              * Note: Textual similarity score measures token overlap and does not prove factual accuracy.
+            </p>
+
+          </div>
+
+          <!-- MEANING GUARD FACT SHIELD CARD -->
+          <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-4">
+            
+            <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+              <div>
+                <h3 class="text-sm font-bold text-slate-900 flex items-center gap-1.5">
+                  <span>🛡️</span> Meaning Guard
+                </h3>
+                <p class="text-xs text-slate-500">Verifies dates, metrics, negations, and commitments across rewrites.</p>
+              </div>
+              <span class="text-[11px] font-mono text-slate-400 bg-slate-100 px-2 py-0.5 rounded">Fact Integrity</span>
+            </div>
+
+            <!-- Status Callout -->
+            <div id="guardStatusBanner" class="p-4 rounded-xl border bg-emerald-50 border-emerald-200 text-emerald-900 flex items-start gap-3">
+              <svg id="guardStatusIcon" class="w-5 h-5 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <div class="space-y-1">
+                <div id="guardStatusLabel" class="text-xs font-bold">Guard Verified: Meaning Intact</div>
+                <div id="guardWarningsContainer" class="space-y-1"></div>
+              </div>
+            </div>
+
+            <!-- Entity Breakdown Chips (Original vs Rewritten) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="text-[11px] font-bold text-slate-600 block mb-1.5">Source Detected Facts:</span>
+                <div id="origEntitiesChips" class="flex flex-wrap gap-1.5"></div>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-50 border border-slate-200">
+                <span class="text-[11px] font-bold text-slate-600 block mb-1.5">Rewritten Detected Facts:</span>
+                <div id="rewEntitiesChips" class="flex flex-wrap gap-1.5"></div>
+              </div>
+            </div>
+
+            <p class="text-[11px] text-slate-400 italic">
+              * Meaning Guard is an algorithmic heuristic check to assist review; always verify critical commitments.
+            </p>
+
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- TRANSFORMATION HISTORY SECTION -->
+    <!-- ============================================================ -->
+    <section id="history-section" class="mt-16 bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+      <div class="flex items-center justify-between mb-4 pb-3 border-b border-slate-100">
+        <div>
+          <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+            <span>🕒</span> Recent Transformation History
+            <span id="historyCountBadge" class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 font-normal">0</span>
+          </h3>
+          <p class="text-xs text-slate-500">Your recent drafts stored safely in local browser storage.</p>
+        </div>
+        <button id="clearHistoryBtn" class="text-xs text-rose-600 hover:text-rose-800 font-semibold px-2 py-1 rounded hover:bg-rose-50 transition">
+          Clear History
+        </button>
+      </div>
+
+      <div id="historyList" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+        <!-- History items dynamically rendered -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================ -->
+  <!-- FEATURES SECTION -->
+  <!-- ============================================================ -->
+  <section id="features" class="py-20 bg-slate-100/60 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold text-blue-600 tracking-wider uppercase mb-2">Engine Architecture</h2>
+        <p class="text-3xl font-extrabold text-slate-900">Why VibeShift AI Wins the Vibeathon</p>
+        <p class="mt-3 text-base text-slate-600">Built for precision, safety, and instant audience transformation.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Feature 1 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl mb-4">
+            👔
+          </div>
+          <h3 class="text-base font-bold text-slate-900 mb-2">4 Contextual Personas</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            From boardroom-ready C-level clarity to peer psychological safety, legal compliance objectivity, and Gen-Z viral hype.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-2xl mb-4">
+            🔍
+          </div>
+          <h3 class="text-base font-bold text-slate-900 mb-2">Word-Level LCS Diffing</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Inspect precisely what was added and removed with side-by-side or unified inline visual diffing and token similarity metrics.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
+          <div class="w-12 h-12 rounded-xl bg-cyan-50 text-cyan-600 flex items-center justify-center text-2xl mb-4">
+            🛡️
+          </div>
+          <h3 class="text-base font-bold text-slate-900 mb-2">Meaning Guard Fact Shield</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Guarantees negations, deadlines, numbers, and key commitments are flagged if dropped, preventing accidental miscommunication.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- HOW IT WORKS SECTION -->
+  <!-- ============================================================ -->
+  <section id="how-it-works" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-xs font-bold text-blue-600 tracking-wider uppercase mb-2">3-Step Flow</h2>
+        <p class="text-3xl font-extrabold text-slate-900">How VibeShift AI Works</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        
+        <div class="p-6">
+          <div class="w-12 h-12 mx-auto rounded-full bg-blue-100 text-blue-700 font-extrabold flex items-center justify-center text-lg mb-4">
+            1
+          </div>
+          <h4 class="font-bold text-slate-900 text-base mb-2">Input Raw Draft</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">Paste blunt messages, emotional vents, or raw meeting bullets into the editor.</p>
+        </div>
+
+        <div class="p-6">
+          <div class="w-12 h-12 mx-auto rounded-full bg-blue-100 text-blue-700 font-extrabold flex items-center justify-center text-lg mb-4">
+            2
+          </div>
+          <h4 class="font-bold text-slate-900 text-base mb-2">Select Persona & Tones</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">Choose your target audience and tune formality, brevity, urgency, and empathy sliders.</p>
+        </div>
+
+        <div class="p-6">
+          <div class="w-12 h-12 mx-auto rounded-full bg-blue-100 text-blue-700 font-extrabold flex items-center justify-center text-lg mb-4">
+            3
+          </div>
+          <h4 class="font-bold text-slate-900 text-base mb-2">Verify Diff & Meaning</h4>
+          <p class="text-xs text-slate-500 leading-relaxed">Check side-by-side token diffs and Meaning Guard checks, then export or copy into Slack or Email.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- API KEY MODAL (Optional live key configuration) -->
+  <!-- ============================================================ -->
+  <div id="apiModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-slate-200">
+      
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <h3 class="text-base font-bold text-slate-900 flex items-center gap-2">
+          <span>⚡</span> Live AI API Setup
+        </h3>
+        <button onclick="document.getElementById('apiModal').classList.add('hidden')" class="text-slate-400 hover:text-slate-600 text-xl font-bold">
+          &times;
+        </button>
+      </div>
+
+      <div class="my-4 text-xs text-slate-600 space-y-3 leading-relaxed">
+        <p>
+          <strong>VibeShift AI</strong> runs out-of-the-box with a high-fidelity <strong>Intelligent Simulation Engine</strong> (no key needed for offline judge demos).
+        </p>
+        <p>
+          To connect a real Google Gemini LLM:
+        </p>
+        <ol class="list-decimal pl-5 space-y-1 font-mono text-[11px] text-slate-700 bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+          <li>Get a free key from <a href="https://aistudio.google.com/" target="_blank" class="text-blue-600 underline">Google AI Studio</a></li>
+          <li>Add to <code class="font-bold text-blue-700">.env</code> in project folder:</li>
+          <li><code class="bg-slate-200 px-1 py-0.5 rounded">GEMINI_API_KEY=your_key_here</code></li>
+          <li>Restart backend: <code class="bg-slate-200 px-1 py-0.5 rounded">python app.py</code></li>
+        </ol>
+        <p class="text-slate-500 text-[11px]">
+          * Google Gemini 1.5 Flash offers 15 Requests Per Minute on their Free Tier.
+        </p>
+      </div>
+
+      <div class="pt-3 border-t border-slate-100 flex justify-end">
+        <button onclick="document.getElementById('apiModal').classList.add('hidden')" class="px-4 py-2 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-slate-800 transition">
+          Got It
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER -->
+  <!-- ============================================================ -->
+  <footer class="bg-slate-900 text-white py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-slate-800">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-blue-600 to-cyan-500 flex items-center justify-center text-white font-bold text-sm">
+            VS
+          </div>
+          <span class="text-lg font-bold tracking-tight">VibeShift AI</span>
+        </div>
+        
+        <p class="text-xs text-slate-400 text-center md:text-right max-w-md">
+          "One rough draft, many voices: rewrite any message for the audience that will read it." Built for College Vibeathon 2026.
+        </p>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+        <div>
+          &copy; 2026 VibeShift AI. Presentation-Ready Vibeathon Project.
+        </div>
+        <div class="flex items-center gap-4">
+          <span class="hover:text-slate-300">FastAPI / Flask + Modern Vanilla SPA</span>
+          <span>•</span>
+          <span class="hover:text-slate-300">LCS Diff Algorithm</span>
+          <span>•</span>
+          <span class="hover:text-slate-300">Meaning Guard Heuristics</span>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/static/js/diff_engine.js"></script>
+  <script src="/static/js/meaning_guard.js"></script>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
